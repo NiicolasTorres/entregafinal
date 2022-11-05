@@ -1,0 +1,32 @@
+{% extends 'social/layout.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+{% for post in posts %}
+
+<article>
+    <div class="container-article">
+        <img src="{{ post.user.profile.image.url }}">
+        <div>
+            <h1>titulo = {{ post.titulo }}</h1>
+            <h1>subtitulo = {{ post.subtitulo }}</h1>
+            <h2 class="username"><a href="{% url 'profile' post.user.username %}">{{ post.user.username }}</a></h2>
+            <i class="clock"></i>
+            <time data-time="#">{{ post.timestamp | naturaltime }}</time>
+            {% if post.imagen %}
+            <img src="{{ post.imagen.url }} " >
+            {% endif %}
+            <div class="post" >{{ post.content | safe }}
+              
+
+            </div>
+
+
+        </div>
+    </div>
+</article>
+
+{% endfor %}
+
+{% endblock %}
